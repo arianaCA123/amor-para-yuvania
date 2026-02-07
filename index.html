@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Para Yuvania 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+   body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(#fde4ec, #f8bbd0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  text-align: center;
+  min-height: 100vh;
+}
+
+
+    h1 {
+      color: #c2185b;
+      margin-bottom: 20px;
+    }
+
+  .boton {
+  background: #f8bbd0;
+  border: none;
+  border-radius: 25px;
+  padding: 18px;
+  margin: 10px 0;
+  width: 100%;
+  max-width: 340px;
+  font-size: 18px;
+  color: #880e4f;
+  cursor: pointer;
+}
+
+
+    .boton:hover {
+      background: #f48fb1;
+      transform: scale(1.03);
+    }
+
+#mensaje {
+  margin-top: 30px;
+  font-size: 24px;
+  color: #880e4f;
+  min-height: 100px;
+  padding: 10px;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+
+
+    #mensaje.mostrar {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Para ti, Yuvania 💕</h1>
+<audio id="musica" loop>
+  <source src="musica.mp3" type="audio/mpeg">
+</audio>
+  <button class="boton">💔 Presiona si peleamos</button>
+  <button class="boton">💭 Presiona si sientes que no te amo</button>
+  <button class="boton">🤍 Presiona si te hago falta</button>
+  <button class="boton">😢 Presiona si te hice llorar</button>
+  <button class="boton">💖 Presiona porque te amo</button>
+  <button class="boton">🎓 Presiona si estoy en la U</button>
+  <button class="boton">💼 Presiona si estás trabajando</button>
+
+  <div id="mensaje"></div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+      const DURACION = 20000;
+      let timeoutActual = null;
+
+      const frases = {
+        peleamos: [
+          "Aunque peleemos, siempre te elijo.",
+          "Las peleas pasan, mi amor por ti no.",
+          "Siempre quiero arreglarlo contigo.",
+          "Eres mi hogar incluso en los días difíciles.",
+          "Nada es más fuerte que lo que siento por ti."
+        ],
+        noAmor: [
+          "Te amo más de lo que las palabras pueden decir.",
+          "Nunca dudes de lo que siento por ti.",
+          "Mi amor por ti es constante y real.",
+          "Eres lo mejor que me pasó en la vida.",
+          "Te amo incluso cuando no lo ves."
+        ],
+        falta: [
+          "Tu ausencia se siente en todo.",
+          "Me haces falta en cada momento.",
+          "No hay día que no piense en ti.",
+          "Te extraño incluso cuando sonrío.",
+          "Eres parte de mí."
+        ],
+        llorar: [
+          "Perdón si te hice llorar, jamás fue mi intención.",
+          "Tu dolor también es mío.",
+          "Quiero cuidarte, no lastimarte.",
+          "Estoy aprendiendo por ti.",
+          "Tu sonrisa es lo que más valoro."
+        ],
+        teAmo: [
+          "Te amo con todo mi ser.",
+          "Eres el amor de mi vida.",
+          "Elegirte es mi decisión diaria.",
+          "Mi corazón es tuyo.",
+          "Siempre seré tu lugar seguro."
+        ],
+        uni: [
+          "Aunque esté en la U, siempre pienso en ti.",
+          "Todo lo que hago también es por nuestro futuro.",
+          "Tu apoyo me da fuerzas.",
+          "Eres mi motivación.",
+          "Te llevo conmigo a donde vaya."
+        ],
+        trabajo: [
+          "Aunque estés trabajando, estoy contigo.",
+          "Admiro todo lo que haces.",
+          "Estoy orgullosa de ti.",
+          "Gracias por esforzarte tanto.",
+          "No estás sola, nunca."
+        ]
+      };
+
+      function mostrarFrase(tipo) {
+         const musica = document.getElementById("musica");
+  musica.play().catch(() => {});
+
+        const mensaje = document.getElementById("mensaje");
+        const lista = frases[tipo];
+        const frase = lista[Math.floor(Math.random() * lista.length)];
+
+        mensaje.textContent = frase;
+        mensaje.classList.add("mostrar");
+
+        if (timeoutActual) clearTimeout(timeoutActual);
+
+        timeoutActual = setTimeout(() => {
+          mensaje.classList.remove("mostrar");
+          mensaje.textContent = "";
+        }, DURACION);
+      }
+
+      const botones = document.querySelectorAll(".boton");
+
+      botones[0].onclick = () => mostrarFrase("peleamos");
+      botones[1].onclick = () => mostrarFrase("noAmor");
+      botones[2].onclick = () => mostrarFrase("falta");
+      botones[3].onclick = () => mostrarFrase("llorar");
+      botones[4].onclick = () => mostrarFrase("teAmo");
+      botones[5].onclick = () => mostrarFrase("uni");
+      botones[6].onclick = () => mostrarFrase("trabajo");
+
+    });
+  </script>
+
+</body>
+</html>
